@@ -16,4 +16,8 @@ public class StudentsModel {
 
     private String name;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "house_model_id")
+    private HouseModel houseModel;
+
 }
