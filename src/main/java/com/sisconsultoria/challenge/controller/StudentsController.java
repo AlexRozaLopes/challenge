@@ -3,11 +3,10 @@ package com.sisconsultoria.challenge.controller;
 import com.sisconsultoria.challenge.model.StudentsModel;
 import com.sisconsultoria.challenge.service.StudentsService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/students")
@@ -19,6 +18,16 @@ public class StudentsController {
     @GetMapping
     public List<StudentsModel> getAllStudents(){
         return studentsService.findAllStudents();
+    }
+
+    @GetMapping("/{id}")
+    public StudentsModel getStudent(@PathVariable UUID id){
+        return studentsService.findStudentById(id);
+    }
+
+    @PostMapping
+    public void postStudent(@RequestBody StudentsModel studentsModel){
+        studentsService.postStudent(studentsModel);
     }
 
 }
