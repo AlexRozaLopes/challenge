@@ -2,6 +2,7 @@ package com.sisconsultoria.challenge.controller;
 
 import com.sisconsultoria.challenge.model.StudentsModel;
 import com.sisconsultoria.challenge.service.StudentsService;
+import com.sisconsultoria.challenge.utils.dto.StudentDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,13 @@ public class StudentsController {
 
     @GetMapping
     @RolesAllowed("admin")
-    public List<StudentsModel> getAllStudents(){
+    public List<StudentDto> getAllStudents(){
         return studentsService.findAllStudents();
     }
 
     @GetMapping("/{id}")
     @RolesAllowed({"admin","user"})
-    public StudentsModel getStudent(@PathVariable UUID id){
+    public StudentDto getStudent(@PathVariable UUID id){
         return studentsService.findStudentById(id);
     }
 
