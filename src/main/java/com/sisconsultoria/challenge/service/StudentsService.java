@@ -1,12 +1,12 @@
 package com.sisconsultoria.challenge.service;
 
+import com.sisconsultoria.challenge.exception.StudentNotFoundException;
 import com.sisconsultoria.challenge.model.StudentsModel;
 import com.sisconsultoria.challenge.repository.StudentsModelRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -20,7 +20,7 @@ public class StudentsService {
 
     public StudentsModel findStudentById(UUID id) {
         return studentsModelRepository.
-                findById(id).orElseThrow(() -> new RuntimeException("Student not found with this id:" + id));
+                findById(id).orElseThrow(() -> new StudentNotFoundException("Student not found with this id:" + id));
     }
 
     public void postStudent(StudentsModel studentsModel) {
@@ -29,7 +29,7 @@ public class StudentsService {
 
     public void deleteById(UUID id) {
        studentsModelRepository.
-                findById(id).orElseThrow(() -> new RuntimeException("Student not found with this id:" + id));
+                findById(id).orElseThrow(() -> new StudentNotFoundException("Student not found with this id:" + id));
         studentsModelRepository.deleteById(id);
     }
 
