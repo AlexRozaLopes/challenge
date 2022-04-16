@@ -34,4 +34,15 @@ public class StudentsController {
         studentsService.postStudent(studentsModel);
     }
 
+    @DeleteMapping("/{id}")
+    @RolesAllowed("admin")
+    public void deleteStudent(@PathVariable UUID id) {
+        studentsService.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public StudentsModel putStudent(@PathVariable UUID id, @RequestBody StudentsModel studentsModel) {
+        return studentsService.putStudent(id, studentsModel);
+    }
+
 }

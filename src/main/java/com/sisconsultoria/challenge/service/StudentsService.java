@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,5 +25,19 @@ public class StudentsService {
 
     public void postStudent(StudentsModel studentsModel) {
         studentsModelRepository.save(studentsModel);
+    }
+
+    public void deleteById(UUID id) {
+       studentsModelRepository.
+                findById(id).orElseThrow(() -> new RuntimeException("Student not found with this id:" + id));
+        studentsModelRepository.deleteById(id);
+    }
+
+    public StudentsModel putStudent(UUID id, StudentsModel studentsModel) {
+       studentsModelRepository.findById(id).map( student -> {
+            student.setName(studentsModel.getName());
+            return studentsModelRepository.save(student);
+        });
+        return studentsModelRepository.save(studentsModel);
     }
 }
