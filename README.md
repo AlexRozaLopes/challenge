@@ -21,3 +21,6 @@ para o __keycloak__ funcionar corretamente sera necesario:
 
 para acessar o console do keycloak [clique aqui](http://localhost:9900/auth/).
 
+Usuario: admin
+Senha: admin123
+
