@@ -42,6 +42,7 @@ public class StudentsController {
     }
 
     @PutMapping("/{id}")
+    @RolesAllowed({"admin","user"})
     public StudentsModel putStudent(@PathVariable UUID id, @RequestBody StudentsModel studentsModel) {
         return studentsService.putStudent(id, studentsModel);
     }
